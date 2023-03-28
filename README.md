@@ -1,5 +1,7 @@
 # A Fast Post-Training Pruning Framework for Transformers
 
+> Implemented BERT Large on the Kaggle P100 with 15GB, takes 11.1 GB memory.
+
 Inspired by post-training quantization (PTQ) toolkits, we propose a post-training pruning framework tailored for Transformers.
 Different from existing pruning methods, our framework does not require re-training to retain high accuracy after pruning.
 This makes our method fully automated and 10x-1000x faster in terms of pruning time.
@@ -15,6 +17,8 @@ This makes our method fully automated and 10x-1000x faster in terms of pruning t
 
 Tested on Python 3.7.10.
 You need an NVIDIA GPU (with 16+ GB memory) to run our code.
+
+> Implemented BERT Large on the Kaggle P100 with 15GB, takes 11.1 GB memory.
 
 ```bash
 pip3 install -r requirements.txt
