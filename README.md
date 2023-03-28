@@ -44,6 +44,15 @@ If you use your own checkpoints, please make sure that each checkpoint directory
   * GLUE: MNLI, QQP, QNLI, SST-2, STS-B, MRPC
   * SQuAD V1.1 & V2
 
+Download models from HF
+```
+from transformers import AutoModelForQuestionAnswering, AutoTokenizer
+
+model_name = "madlag/bert-large-uncased-whole-word-masking-finetuned-squadv2"
+model = AutoModelForQuestionAnswering.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+```
+
 The following example prunes a QQP BERT-base model with 50% MAC (FLOPs) constraint:
 ```bash
 python3 main.py --model_name bert-base-uncased \
