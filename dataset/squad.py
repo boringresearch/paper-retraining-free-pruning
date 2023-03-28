@@ -388,6 +388,9 @@ def postprocess_qa_predictions(
                     # provided).
                     if token_is_max_context is not None and not token_is_max_context.get(str(start_index), False):
                         continue
+                    print(f"start_index: {start_index}, end_index: {end_index}, len(offset_mapping): {len(offset_mapping)}")
+                    print(f"offset_mapping: {offset_mapping}")
+
                     prelim_predictions.append(
                         {
                             "offsets": (offset_mapping[start_index][0], offset_mapping[end_index][1]),
