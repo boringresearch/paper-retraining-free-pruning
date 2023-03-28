@@ -57,7 +57,7 @@ The following example prunes a QQP BERT-base model with 50% MAC (FLOPs) constrai
 ```bash
 python3 main.py --model_name bert-base-uncased \
                 --task_name qqp \
-                --ckpt_dir <your HF ckpt directory> \
+                --ckpt_dir <your HF ckpt directory> \ # usually it would be ~/.cache/huggingface/hub/models-name-dv2/snapshots/ead15fce67e3003ae1ea873316afbfe2f057fc0
                 --constraint 0.5
 ```
 
