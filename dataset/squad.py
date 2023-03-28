@@ -397,7 +397,7 @@ def postprocess_qa_predictions(
                                 "start_logit": start_logits[start_index],
                                 "end_logit": end_logits[end_index],
                             }
-                        }
+                        )
                     except:
                         print(f"offset_mapping: {offset_mapping}")
                         print(f"start_index: {start_index}, end_index: {end_index}, len(offset_mapping): {len(offset_mapping)}")
