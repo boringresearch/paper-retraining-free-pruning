@@ -61,6 +61,15 @@ python3 main.py --model_name bert-base-uncased \
                 --constraint 0.5
 ```
 
+Squad v2
+| Metric | Constraint | Seed | MAC (%) | Pruning Time (s) | Test Accuracy (%) |
+|--------|------------|------|---------|------------------|--------------------|
+| MAC    | 0.1        | 1    | 10.00   | 647.13           | 3.0021             |
+| MAC    | 0.5        | 1    | 50.00   | 573.83           | 78.6466            |
+| MAC    | 0.7        | 1    | 70.00   | 567.95           | 83.5277            |
+| MAC    | 0.8        | 1    | 80.00   | 559.19           | 84.7552            |
+| MAC    | 0.9        | 1    | 90.00   | 440.01           | 92.9893            |
+
 You can also control more arguments such as sample dataset size (see `main.py`).
 
 ## Citation
