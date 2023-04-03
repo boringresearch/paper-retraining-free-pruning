@@ -150,7 +150,7 @@ def main():
     neuron_mask_path = os.path.join(args.output_dir, "neuron_mask.pt")
     
     if not os.path.exists(head_mask_path) or not os.path.exists(neuron_mask_path):
-
+        print("No head_mask or neuron_mask exists, pruning")
         start = time.time()
         # Search the optimal mask
         head_grads, neuron_grads = collect_mask_grads(
@@ -220,6 +220,7 @@ def main():
         logger.info(f"{args.task_name} Pruning time (s): {end - start}")
         issaving = True
     else:
+        print("head_mask and neuron_mask exists, skip pruning")
         head_mask = torch.load(head_mask_path)
         neuron_mask = torch.load(neuron_mask_path)
         issaving = False
