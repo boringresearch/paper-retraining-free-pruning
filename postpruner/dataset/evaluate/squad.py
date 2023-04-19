@@ -1,9 +1,9 @@
 import torch
 from datasets import load_metric
 
-from dataset.squad import create_and_fill_np_array, post_processing_function
-from utils.arch import apply_neuron_mask
-from utils.meter import AverageMeter
+from postpruner.dataset.squad import create_and_fill_np_array, post_processing_function
+from postpruner.utils.arch import apply_neuron_mask
+from postpruner.utils.meter import AverageMeter
 
 
 @torch.no_grad()

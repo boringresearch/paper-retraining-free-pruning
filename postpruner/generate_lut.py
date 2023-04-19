@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from transformers import AutoConfig
 
-from utils.timer import CPUTimer, GPUTimer
+from postpruner.utils.timer import CPUTimer, GPUTimer
 
 
 class BertMHA(nn.Module):

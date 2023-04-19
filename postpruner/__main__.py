@@ -33,8 +33,8 @@ def main():
     parser.add_argument("--ffn_lut", type=str, default=None)
     parser.add_argument("--num_samples", type=int, default=2048)
     parser.add_argument("--seed", type=int, default=0)
-    parser.add_argument("--head_mask_output", type=str, default="head_mask.pt")
-    parser.add_argument("--neuron_mask_output", type=str, default="neuron_mask.pt")
+    # parser.add_argument("--head_mask_output", type=str, default="head_mask.pt")
+    # parser.add_argument("--neuron_mask_output", type=str, default="neuron_mask.pt")
     args = parser.parse_args()
 
     run(

@@ -1,6 +1,6 @@
 numpy
 scipy
-cupy
+cupy-cuda12x
 tqdm
 torch
 datasets
