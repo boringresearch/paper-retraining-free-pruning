@@ -57,7 +57,8 @@ parser.add_argument("--mha_lut", type=str, default=None)
 parser.add_argument("--ffn_lut", type=str, default=None)
 parser.add_argument("--num_samples", type=int, default=2048)
 parser.add_argument("--seed", type=int, default=0)
-
+parser.add_argument("--head_mask_output", type=str, default="head_mask.pt")
+parser.add_argument("--neuron_mask_output", type=str, default="neuron_mask.pt")
 
 def main():
     args = parser.parse_args()
@@ -146,9 +147,9 @@ def main():
     full_head_mask = torch.ones(config.num_hidden_layers, config.num_attention_heads).cuda()
     full_neuron_mask = torch.ones(config.num_hidden_layers, config.intermediate_size).cuda()
     
-    head_mask_path = os.path.join(args.output_dir, "head_mask.pt")
-    neuron_mask_path = os.path.join(args.output_dir, "neuron_mask.pt")
-    
+    head_mask_path = os.path.join(args.output_dir, args.head_mask_output)
+    neuron_mask_path = os.path.join(args.output_dir, args.neuron_mask_output)
+
     if not os.path.exists(head_mask_path) or not os.path.exists(neuron_mask_path):
         print("No head_mask or neuron_mask exists, pruning")
         start = time.time()
