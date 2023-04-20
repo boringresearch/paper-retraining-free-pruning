@@ -19,6 +19,8 @@ def eval_squad_acc(
     metric = load_metric(task_name)
 
     model.eval()
+    print("neuron_mask:", neuron_mask)
+    
     handles = apply_neuron_mask(model, neuron_mask)
 
     all_start_logits = []
