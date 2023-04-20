@@ -19,8 +19,7 @@ def eval_squad_acc(
     metric = load_metric(task_name)
 
     model.eval()
-    if neuron_mask is not None:
-        handles = apply_neuron_mask(model, neuron_mask)
+    handles = apply_neuron_mask(model, neuron_mask)
 
     all_start_logits = []
     all_end_logits = []
@@ -37,9 +36,8 @@ def eval_squad_acc(
 
         all_start_logits.append(start_logits.cpu().numpy())
         all_end_logits.append(end_logits.cpu().numpy())
-    if neuron_mask is not None:
-        for handle in handles:
-            handle.remove()
+    for handle in handles:
+        handle.remove()
 
     max_len = max([x.shape[1] for x in all_start_logits])
     start_logits_concat = create_and_fill_np_array(all_start_logits, eval_dataset, max_len)
@@ -64,8 +62,7 @@ def eval_squad_loss(
     loss = AverageMeter("squad_loss")
 
     model.eval()
-    if neuron_mask is not None:
-        handles = apply_neuron_mask(model, neuron_mask)
+    handles = apply_neuron_mask(model, neuron_mask)
     for batch in dataloader:
         for k, v in batch.items():
             batch[k] = v.to("cuda", non_blocking=True)
