@@ -1,5 +1,8 @@
 # A Fast Post-Training Pruning Framework for Transformers
+```
+python setup.py sdist
 
+```
 > Implemented BERT Large on the Kaggle P100 with 15GB, takes 11.1 GB memory.
 
 Inspired by post-training quantization (PTQ) toolkits, we propose a post-training pruning framework tailored for Transformers.
