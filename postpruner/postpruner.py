@@ -192,9 +192,9 @@ def run(model_name, task_name, ckpt_dir, constraint, output_dir=None, gpu=0, met
         neuron_mask = torch.load(neuron_mask_path)
         issaving = False
 
-    # Evaluate the accuracy
-    test_acc = test_accuracy(model, head_mask, neuron_mask, tokenizer, task_name)
-    logger.info(f"{task_name} Test accuracy: {test_acc:.4f}")
+    # Evaluate the accuracy (skip)
+    # test_acc = test_accuracy(model, head_mask, neuron_mask, tokenizer, task_name)
+    # logger.info(f"{task_name} Test accuracy: {test_acc:.4f}")
     
     # Save the masks
     if issaving:
