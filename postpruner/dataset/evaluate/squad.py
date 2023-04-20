@@ -19,21 +19,27 @@ def eval_squad_acc(
     metric = load_metric(task_name)
 
     model.eval()
-    handles = apply_neuron_mask(model, neuron_mask)
+    if neuron_mask is not None:
+        handles = apply_neuron_mask(model, neuron_mask)
+
     all_start_logits = []
     all_end_logits = []
     for batch in dataloader:
         for k, v in batch.items():
             batch[k] = v.to("cuda", non_blocking=True)
 
-        outputs = model(head_mask=head_mask, **batch)
+        if head_mask is not None:
+            outputs = model(head_mask=head_mask, **batch)
+        else:
+            outputs = model(**batch)
         start_logits = outputs.start_logits
         end_logits = outputs.end_logits
 
         all_start_logits.append(start_logits.cpu().numpy())
         all_end_logits.append(end_logits.cpu().numpy())
-    for handle in handles:
-        handle.remove()
+    if neuron_mask is not None:
+        for handle in handles:
+            handle.remove()
 
     max_len = max([x.shape[1] for x in all_start_logits])
     start_logits_concat = create_and_fill_np_array(all_start_logits, eval_dataset, max_len)
@@ -58,12 +64,16 @@ def eval_squad_loss(
     loss = AverageMeter("squad_loss")
 
     model.eval()
-    handles = apply_neuron_mask(model, neuron_mask)
+    if neuron_mask is not None:
+        handles = apply_neuron_mask(model, neuron_mask)
     for batch in dataloader:
         for k, v in batch.items():
             batch[k] = v.to("cuda", non_blocking=True)
 
-        outputs = model(head_mask=head_mask, **batch)
+        if head_mask is not None:
+            outputs = model(head_mask=head_mask, **batch)
+        else:
+            outputs = model(**batch)
         loss.update(outputs.loss, n=batch["input_ids"].shape[0])
     for handle in handles:
         handle.remove()
