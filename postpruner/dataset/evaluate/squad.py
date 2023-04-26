@@ -4,6 +4,7 @@ from datasets import load_metric
 from postpruner.dataset.squad import create_and_fill_np_array, post_processing_function
 from postpruner.utils.arch import apply_neuron_mask
 from postpruner.utils.meter import AverageMeter
+import evaluate
 
 
 @torch.no_grad()
@@ -16,7 +17,7 @@ def eval_squad_acc(
     eval_examples,
     task_name,
 ):
-    metric = load_metric(task_name)
+    metric = evaluate.load(task_name)
 
     model.eval()
     print("neuron_mask:", neuron_mask)
